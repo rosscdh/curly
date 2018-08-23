@@ -1,0 +1,18 @@
+version: '3.0'
+
+services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/DockerfileBackend
+    #working_dir: /src
+    #command: gunicorn app:app.wsgi --workers=4 --bind=0.0.0.0:5000 --pid=pid --worker-class=meinheld.gmeinheld.MeinheldWorker
+    # command: uvicorn app:app --host 0.0.0.0 --port 5000 --limit-max-requests 100
+    command: gunicorn app:app --bind=0.0.0.0:5000 --reload -k uvicorn.workers.UvicornWorker
+    volumes:
+      - ./backend:/src
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
