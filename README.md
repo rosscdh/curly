@@ -1,6 +1,9 @@
 Curly
 =====
 
+```
+docker-compose up
+```
 
 ```
 http http://localhost:5000/schema/
