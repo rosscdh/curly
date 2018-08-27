@@ -6,7 +6,9 @@ services:
     build:
       context: .
       dockerfile: docker/DockerfileBackend
-    command: gunicorn app:app --bind=0.0.0.0:5000 --reload -k uvicorn.workers.UvicornWorker
+    command: gunicorn app:app --bind=0.0.0.0:5000 -t 9000 --reload -k uvicorn.workers.UvicornWorker
+    stdin_open: true
+    tty: true
     volumes:
       - ./backend:/src
     ports:
